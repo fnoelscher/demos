@@ -34,6 +34,12 @@ int main(int argc, char **argv)
   try 
     {
       testimage = r.readImageFromFile("test_input3.jpg");
+
+      std::cout << "Successfully read image file!" << std::endl;
+      printImageData(testimage);
+      std::cout << "Now trying to write output file" << std::endl;
+
+      w.writeImage("output.jpg", testimage, imageType::Jpeg);
     }
   catch (OpenFailedException)
     {
@@ -54,16 +60,6 @@ int main(int argc, char **argv)
     {
       std::cout << "Something else imagereader-related failed!" << std::endl;
       return -1;
-    }
-
-  std::cout << "Successfully read image file!" << std::endl;
-  printImageData(testimage);
-  std::cout << "Now trying to write output file" << std::endl;
-
-  // write image
-  try 
-    {
-      w.writeImage("output.jpg", testimage, imageType::Jpeg);
     }
   catch (ImagewriterException& e)
     {
