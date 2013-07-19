@@ -40,6 +40,9 @@ int main(int argc, char **argv)
       std::cout << "Now trying to write output file" << std::endl;
 
       w.writeImage("output.jpg", testimage, imageType::Jpeg);
+
+      std::cout << "Successfully wrote output file!" << std::endl;
+      delete testimage;
     }
   catch (OpenFailedException)
     {
@@ -67,8 +70,6 @@ int main(int argc, char **argv)
       return -1;
     }
 
-  std::cout << "Successfully wrote output file!" << std::endl;
-  delete testimage;
   return 0;
 }
 
