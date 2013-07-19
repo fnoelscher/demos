@@ -44,7 +44,7 @@ int main(int argc, char **argv)
       std::cout << "Successfully wrote output file!" << std::endl;
       delete testimage;
     }
-  catch (OpenFailedException)
+  catch (OpenFailedException& e)
     {
       std::cout << "Opening input file did not work!" << std::endl;
       return -1;
