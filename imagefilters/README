@@ -1,0 +1,10 @@
+Goals of this project:
+     Provide an easy-to-use toolset for creating image filters
+     Experiment with image formats and libraries
+     Experiment with OpenCL
+
+Depends on:
+	libjpeg
+
+Building:
+	make

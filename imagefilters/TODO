@@ -1,0 +1,7 @@
+- use vectors instead of buffer for image data
+- refactor jpeg loading / writing
+- start implementing actual filters!
+- make tests for loading / writing
+- Documentation
+- improve exception structs / unify
+- make bmp loading & writing work properly
