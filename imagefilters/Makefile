@@ -3,13 +3,13 @@ OUTNAME=imagefilter
 # LIBDIRS=
 LIBS=jpeg
 CFLAGS= --std=c++0x -g -l $(LIBS)
-OBJECTS= imagereader.o imagewriter.o imageops.o 
+OBJECTS= imagereader.o imagewriter.o imageops.o bwfilter.o
 
-all: $(OBJECTS)
-	$(CC) $(CFLAGS) -o imagefilter $(OBJECTS)
+all: $(OBJECTS) test
+	@echo "Finished compiling."
 
-rebuild: clean $(OBJECTS)
-	$(CC) $(CFLAGS) -o imagefilter $(OBJECTS)
+rebuild: clean $(OBJECTS) test
+	@echo "Finished compiling."
 
 clean:
 	-rm *.o

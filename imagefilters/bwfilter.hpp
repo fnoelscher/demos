@@ -1,4 +1,7 @@
 /*   
+    Simple black and white filter
+     simply sums up all color-values and calculates "lightness"
+
     Copyright (C) 2013  H. F. Noelscher
 
     This program is free software: you can redistribute it and/or modify
@@ -15,23 +18,18 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef IMAGEFILTER_HPP
-#define IMAGEFILTER_HPP
+#ifndef BWFILTER_HPP
+#define BWFILTER_HPP
 
-#include "image.hpp"
+#include <cmath>
 
-// abstract base class
-class Imagefilter {
-protected:
-  /*
-    @brief Runs filter on Image in place
-   */
-  virtual void transform(Image *img) = 0;
+#include "imagefilter.hpp"
 
-  /*
-    @brief Runs Filter on Image, writes result to destImage
-   */
-  virtual void transform(Image *img, Image *destImage) = 0;
+class BwFilter : public Imagefilter {
+public:
+  // override
+  void transform(Image *img);
+  void transform(Image *src, Image *dst);
 };
 
 #endif
