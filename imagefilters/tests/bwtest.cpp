@@ -18,34 +18,62 @@
 */
 
 #include <iostream>
+#include <vector>
 
 #include "image.hpp"
 #include "imagereader.hpp"
 #include "imagewriter.hpp"
 #include "bwfilter.hpp"
+#include "util/fileops.hpp"
 
 int main(int argc, char **argv)
 {
   Imagereader r;
   Imagewriter w;
-  Image *img;
+  std::vector<Image*> images;
   BwFilter bf;
-  // open image
+
+  // get directory contents
+  std::vector<std::string> filenames = listDirectoryContents("jpg images");
+
   try
     {
-      // open image
-      img = r.readImageFromFile("test_input3.jpg");
-      std::cout << "Successfully read image file!" << std::endl;
+      // open images
+      for(std::string filename : filenames)
+	{   
+	  if(filename.length() < 3)
+	    continue;
+    
+	  std::string destfile = "jpg images/" + filename;
 
-      // process image
-      bf.transform(img);
+	  images.push_back( r.readImageFromFile(destfile) );
+	}
+      std::cout << "Successfully read image files!" << std::endl;
 
-      // write image
-      w.writeImage("bw_output.jpg", img, imageType::Jpeg);
-      std::cout << "Successfully wrote output file!" << std::endl;
+      // process images - stop time TBD
+      for(Image *img : images)
+	{
+	  bf.transform(img);
+	}
+
+      // write images
+      char index = '1';
+      for(Image *img : images)
+	{
+	  std::string filename = "test output/bwfilter/";
+	  filename += index;
+	  filename += ".jpeg";
+	  w.writeImage(filename, img, imageType::Jpeg);
+	  index++;
+	}
+      std::cout << "Successfully wrote output files!" << std::endl;
 
       // clean up
-      delete img;
+      for(Image *img : images)
+	{
+	  delete img;
+	}
+      images.clear();      
     }
   catch (OpenFailedException& e)
     {

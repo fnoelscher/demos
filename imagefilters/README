@@ -5,6 +5,6 @@ Goals of this project:
 
 Depends on:
 	libjpeg
-
+	fileops from Toolset
 Building:
 	make
