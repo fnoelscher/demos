@@ -35,13 +35,13 @@ int main(int argc, char **argv)
 
   try 
     {
-      testimage = r.readImageFromFile("test_input3.jpg");
+      testimage = r.readImageFromFile("jpg images/1.jpeg");
 
       std::cout << "Successfully read image file!" << std::endl;
       printImageData(testimage);
       std::cout << "Now trying to write output file" << std::endl;
 
-      w.writeImage("output.jpg", testimage, imageType::Jpeg);
+      w.writeImage("test output/rwtest/output.jpg", testimage, imageType::Jpeg);
 
       std::cout << "Successfully wrote output file!" << std::endl;
       delete testimage;
